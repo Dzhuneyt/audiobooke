@@ -1,0 +1,8 @@
+FROM node:13.12.0-stretch
+
+WORKDIR /app
+
+EXPOSE 8888
+
+# Start Angular Universal in watch mode
+CMD ["npm", "run", "dev:ssr"]

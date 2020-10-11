@@ -1,0 +1,39 @@
+:host {
+  display: block;
+}
+
+.loading {
+  margin: 5em auto;
+
+  mat-spinner {
+    margin: auto;
+  }
+}
+
+.cover-holder {
+  text-align: center;
+}
+
+.add-to-favorites {
+  width: 100%;
+}
+
+img {
+  width: 100%;
+  max-width: 300px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 4em;
+}
+
+.book-title {
+  font-size: 5em;
+}
+
+.meta-row {
+  font-size: 1.5em;
+}

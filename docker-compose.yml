@@ -1,0 +1,99 @@
+version: '3.7'
+services:
+
+  # The main entrypoint of the app
+  # Access it through http://127.0.0.1:8888
+  # NGINX is responsible for distributing traffic to the other containers, based on the path
+  # (e.g. /api/* goes to backend container)
+  nginx:
+    build: ./apps/nginx
+    ports:
+      - ${EXPOSED_PORT-8888}:80
+    depends_on:
+      - frontend
+      - backend
+      - api_docs
+
+  # Serves the ./dist artifacts of the Angular frontend
+  # Depends on ./dist being generated as part of "frontend_builder"
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile-local-serve
+    volumes:
+      - ./apps/frontend:/app:cached
+    depends_on:
+      - frontend_builder
+
+  # Builds the Angular app's ./dist folder
+  # The ./dist folder is served in parallel by the "frontend" service
+  frontend_builder:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile-local-build
+    volumes:
+      - ./apps/frontend:/app:delegated
+
+  # The Yii2 based REST API
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile-dev
+    depends_on:
+      # Redis not really used in the app currently
+      - redis
+      - mysql
+    environment:
+      - PHP_USER_ID=${USER_ID:-1000}
+      - APACHE_RUN_USER=#${USER_ID:-1000}
+
+      - YII_ENV=${YII_ENV:-dev}
+
+      # Database credentials, point to "mysql" service defined below
+      - DB_HOST=mysql
+      - DB_USER=${DB_USER:-audiobooke}
+      - DB_PASS=${DB_PASS:-audiobooke}
+      - DB_NAME=${DB_NAME:-audiobooke}
+
+      # Google API Keys. Required for Google+ SSO login support
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-927616647800-606qkruh4m6qbbej7juen35rf2nlq1lm.apps.googleusercontent.com}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET:-qs1qdYYnJj9h5XBw5zF9Yk9Q}
+      - GOOGLE_SSO_REDIRECT_URL=${GOOGLE_SSO_REDIRECT_URL:-http://localhost:8888/user/login}
+
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_PORT=${SMTP_PORT}
+    volumes:
+      - ./apps/backend:/app:cached
+
+  # API documentation, based on Jekyll (access through http://127.0.0.1:8889)
+  api_docs:
+    build:
+      context: ./apps/api-docs
+    working_dir: /app
+    volumes:
+      - ./apps/api-docs:/app:cached
+    depends_on:
+      - backend
+    privileged: true
+
+  # Provide a Redis server for Yii2
+  redis:
+    image: library/redis:6.0.8-alpine
+    command: redis-server --appendonly yes
+
+  # The database for the backend (Yii2) app
+  # Access it by connecting to mysql://127.0.0.1:33306, username=audiobooke, password=audiobooke
+  mysql:
+    image: mariadb:10.2.31-bionic
+    ports:
+      - ${MYSQL_HIDDEN_PORT:-33306}:3306
+    volumes:
+      - ./apps/mysql/init.db/:/docker-entrypoint-initdb.d/:cached
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-audiobooke}
+      MYSQL_USER: ${DB_USER:-audiobooke}
+      MYSQL_PASSWORD: ${DB_PASS:-audiobooke}
+      MYSQL_ROOT_PASSWORD: 'root' # root user unused right now
+

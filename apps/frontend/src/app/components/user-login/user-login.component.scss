@@ -1,0 +1,39 @@
+.fullwidth-image {
+  background: url("../../../assets/images/register-background.jpg");
+  background-size: cover;
+  width: 100%;
+  min-height: 800px;
+  display: block;
+
+  .center-square {
+    text-align: center;
+    background: #1976D2;
+    color: #fff;
+    width: 95%;
+    max-width: 800px;
+    padding: 3em 2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+
+    h2 {
+      margin: 0;
+      padding-bottom: 0.5em;
+    }
+
+    .subheading {
+      font-size: 1.5em;
+      padding-bottom: 1em;
+    }
+  }
+}
+
+.sso {
+  font-size: 2em;
+  padding: 0.5em 1em;
+
+  .fa {
+    margin-top: -5px;
+  }
+}

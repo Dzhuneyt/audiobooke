@@ -1,0 +1,114 @@
+<div *ngIf="!details" class="loading" fxFlex="center center">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="details" class="audiobook-single-wrapper width-fixed">
+  <div class="row">
+    <div class="col-sm-3 cover-holder">
+      <img
+        alt="Audioook cover"
+        [src]="details.cover_url ? details.cover_url : 'https://via.placeholder.com/300x300?text=No%20image'"
+      />
+
+      <br/> <br/>
+
+      <button (click)="favorite(details.id)"
+              class="add-to-favorites"
+              color="info"
+              mat-raised-button>
+
+        <ng-container *ngIf="details.is_favorited">
+          <mat-icon inline="true">favorite</mat-icon>
+          &nbsp;In your favorites
+        </ng-container>
+        <ng-container *ngIf="!details.is_favorited">
+          <mat-icon inline="true">favorite_border</mat-icon>
+          Add to favorites
+        </ng-container>
+      </button>
+
+      <br/> <br/>
+
+      <ng-container *ngIf="details.type==='librivox'">
+        <button (click)="download(details.id)"
+                class="add-to-favorites"
+                color="primary" mat-raised-button>
+          <mat-icon inline="true">cloud_download</mat-icon>&nbsp;
+          Download the Audiobook
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="details.type==='audible'">
+        <button (click)="audibleRedirect()"
+                class="add-to-favorites"
+                color="primary" mat-raised-button>
+          <mat-icon inline="true">cloud_download</mat-icon>&nbsp;
+          Buy from Audible.com
+        </button>
+      </ng-container>
+
+    </div>
+    <div class="col-sm-9">
+      <h1 class="book-title">
+        {{details.title}}
+        <br/>
+        <small>
+          by {{details.author_name}}
+        </small>
+      </h1>
+
+      <br/>
+
+      <div
+        class="meta-row"
+        fxLayout="column" fxLayoutGap="20px">
+
+        <div fxFlex>
+          <mat-icon>language</mat-icon>&nbsp;
+          Language: {{details.language}}
+        </div>
+
+        <div fxFlex>
+          <mat-icon>watch_later</mat-icon>&nbsp;
+          Total length: {{getSecondsFormatted()}}
+        </div>
+
+        <div fxFlex>
+          <mat-icon>calendar_today</mat-icon>&nbsp;
+          First released: {{details.year}}
+          <ng-container *ngIf="yearsAgo>0">({{yearsAgo}} years ago)</ng-container>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="false" class="row-fluid meta-row ">
+    <div class="col-lg-4">
+      <mat-icon>calendar_today</mat-icon>
+      First released: {{details.year}}
+    </div>
+    <div class="col-lg-4">
+      <mat-icon>watch_later</mat-icon>
+      Total length: {{getSecondsFormatted()}}
+    </div>
+    <div class="col-lg-4">
+      <mat-icon>language</mat-icon>
+      Language: {{details.language}}
+    </div>
+  </div>
+
+  <br/>
+
+  <hr/>
+
+  <h2>
+    Summary
+  </h2>
+
+  <br/>
+  <div [innerHTML]="details.description" class="lead"></div>
+
+  <hr/>
+
+</div>

@@ -1,0 +1,72 @@
+{
+  "name": "githubjeka/rest-yii2",
+  "description": "Yii 2 Rest Api Template",
+  "keywords": [
+    "yii2",
+    "rest",
+    "application template",
+    "api"
+  ],
+  "homepage": "https://github.com/githubjeka/yii2-rest",
+  "type": "project",
+  "license": "BSD-4-Clause",
+  "authors": [
+    {
+      "name": "Evgeniy Tkachenko",
+      "email": "et.coder@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/githubjeka/yii2-rest/issues",
+    "source": "https://github.com/githubjeka/yii2-rest"
+  },
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.1.0",
+    "yiisoft/yii2": "~2.0.6",
+    "yiisoft/yii2-bootstrap": "~2.0.0",
+    "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
+    "yiisoft/yii2-authclient": "^2.0@dev",
+    "tecnocen/yii2-oauth2-server": "*",
+    "codemix/yii2-streamlog": "dev-master",
+    "spacedealer/yii2-loggly": "dev-master",
+    "yiisoft/yii2-redis": "~2.0.0",
+    "linslin/yii2-curl": "*",
+    "yiisoft/yii2-queue": "^2.0@dev",
+    "vlucas/phpdotenv": "^3.3@dev",
+    "aws/aws-sdk-php": "^3.0@dev"
+  },
+  "require-dev": {
+    "yiisoft/yii2-debug": "~2.0.0",
+    "yiisoft/yii2-gii": "~2.0.0",
+    "yiisoft/yii2-faker": "~2.0.0",
+    "codeception/base": "^2.2.3",
+    "codeception/verify": "~0.3.1"
+  },
+  "config": {
+    "process-timeout": 1800,
+    "fxp-asset": {
+      "enabled": false
+    }
+  },
+  "extra": {
+    "asset-installer-paths": {
+      "npm-asset-library": "vendor/npm",
+      "bower-asset-library": "vendor/bower"
+    },
+    "asset-registry-options": {
+      "npm-searchable": false,
+      "bower-searchable": false
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "scripts": {
+    "lite-server": "@php yii serve"
+  }
+}

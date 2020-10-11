@@ -1,0 +1,18 @@
+FROM yiisoftware/yii2-php:7.3-apache
+
+WORKDIR /app
+
+# Create necessary config files
+# RUN php init --env=Production --overwrite=y
+
+#ENTRYPOINT ["entrypoint.sh"]
+
+ENV APACHE_DOCUMENT_ROOT /app/rest/web
+RUN sed -ri -e 's!/app/web!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/app/web/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+EXPOSE 80
+RUN a2enmod cgi
+RUN a2enmod rewrite
+
+COPY docker-php-entrypoint /usr/local/bin/

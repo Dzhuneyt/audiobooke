@@ -1,0 +1,14 @@
+<div class="mat-app-background">
+  <app-header (drawerClick)="drawerClicked()"></app-header>
+  <mat-sidenav-container [autosize]="true" class="example-container">
+    <mat-sidenav [(opened)]="drawerOpen" mode="side">
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <app-footer></app-footer>
+</div>

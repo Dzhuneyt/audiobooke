@@ -1,0 +1,26 @@
+{
+  "name": "audiobooke",
+  "version": "1.0.0",
+  "description": "Audiobooke",
+  "main": "index.js",
+  "scripts": {
+    "dev": "USER_ID=$(id -u) docker-compose up --remove-orphans --build",
+    "util:install-dependencies": "npx concurrently --kill-others-on-fail 'cd ./apps/backend && npm run deps' 'cd ./apps/frontend && npm i --no-audit'",
+    "backend:migrations": "USER_ID=$(id -u) docker-compose exec backend php yii migrate --interactive=0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dzhuneyt/Audiobooke.git"
+  },
+  "keywords": [],
+  "author": "Dzhuneyt <dzhuneyt@dzhuneyt.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dzhuneyt/Audiobooke/issues"
+  },
+  "homepage": "https://github.com/Dzhuneyt/Audiobooke#readme",
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "open-cli": "^6.0.1"
+  }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit bootstrap="./bootstrap.php"
+         backupGlobals="true"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnFailure="false"
+         printerClass="PHPUnit\Util\TestDox\TextResultPrinter">
+    <testsuites>
+        <testsuite name="functional">
+            <directory>.</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">framework/</directory>
+        </whitelist>
+    </filter>
+</phpunit>

@@ -1,0 +1,4 @@
+/vendor
+/rest/runtime
+/console/runtime
+Dockerfile

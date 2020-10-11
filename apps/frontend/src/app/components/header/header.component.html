@@ -1,0 +1,38 @@
+<div class="header bg-color-main">
+  <div class="pull-right login-logout">
+
+    <span>
+      <a routerLink="/audiobook" routerLinkActive="true">
+      <mat-icon inline="true">list_alt</mat-icon>
+      Audiobooks
+      </a>
+    </span>
+
+    &nbsp;
+
+    <span>
+      <!--<a *ngIf="!isLoggedIn()" routerLink="/user/login">-->
+      <!--<mat-icon inline="true">lock_open</mat-icon>-->
+      <!--Login-->
+      <!--</a>-->
+
+    <a (click)="logout()" *ngIf="isLoggedIn()">
+      <mat-icon inline="true">exit_to_app</mat-icon>
+      Logout
+    </a>
+    </span>
+  </div>
+
+
+  <h2 routerLink="">
+    <span
+      (click)="drawerClick.emit()"
+      *ngIf="showDrawer"
+      class="drawer">
+      <i aria-hidden="true" class="fa fa-bars"></i>
+    </span>
+    <mat-icon inline="true">headset</mat-icon>
+    Audiobooks
+  </h2>
+
+</div>

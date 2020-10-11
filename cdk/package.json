@@ -1,0 +1,69 @@
+{
+  "name": "cdk",
+  "version": "0.1.0",
+  "bin": {
+    "cdk": "bin/cdk.js"
+  },
+  "scripts": {
+    "deploy:app": "cdk deploy 'Audiobooke-app-*' --require-approval=never",
+    "deploy:ci": "cdk deploy 'Audiobooke-CI' --require-approval=never",
+    "destroy": "cdk destroy '*' --require-approval=never",
+    "synth": "cdk synth --no-staging > template.yaml",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "^1.67.0",
+    "@types/jest": "^24.0.22",
+    "@types/node": "^10.17.39",
+    "aws-cdk": "^1.67.0",
+    "jest": "^24.9.0",
+    "parcel": "2.0.0-beta.1",
+    "ts-jest": "^24.1.0",
+    "ts-node": "^8.8.2",
+    "typescript": "^3.8.3",
+    "uglifyjs-webpack-plugin": "^2.2.0"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-appsync": "^1.67.0",
+    "@aws-cdk/aws-batch": "^1.67.0",
+    "@aws-cdk/aws-certificatemanager": "^1.67.0",
+    "@aws-cdk/aws-cloudwatch": "^1.67.0",
+    "@aws-cdk/aws-codebuild": "^1.67.0",
+    "@aws-cdk/aws-codepipeline": "^1.67.0",
+    "@aws-cdk/aws-codepipeline-actions": "^1.67.0",
+    "@aws-cdk/aws-ec2": "^1.67.0",
+    "@aws-cdk/aws-ecs": "^1.67.0",
+    "@aws-cdk/aws-elasticloadbalancingv2": "^1.67.0",
+    "@aws-cdk/aws-iam": "^1.67.0",
+    "@aws-cdk/aws-lambda": "^1.67.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.67.0",
+    "@aws-cdk/aws-rds": "^1.67.0",
+    "@aws-cdk/aws-route53-targets": "^1.67.0",
+    "@aws-cdk/aws-sqs": "^1.67.0",
+    "@aws-cdk/aws-ssm": "^1.67.0",
+    "@aws-cdk/core": "^1.67.0",
+    "@types/mysql": "^2.15.10",
+    "dotenv": "^8.2.0",
+    "mysql": "^2.18.1",
+    "source-map-support": "^0.5.17",
+    "temp-dir": "^2.0.0",
+    "ts-loader": "^6.2.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "targets": {
+    "cdk-lambda": {
+      "context": "node",
+      "includeNodeModules": {
+        "aws-sdk": false
+      },
+      "sourceMap": false,
+      "minify": false,
+      "engines": {
+        "node": ">= 12"
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+body {
+  font-size: 100%;
+  line-height: 1;
+}
+
+::ng-deep {
+
+  // Apply these 2 classes to any page that you would like to be full width or 1440px wide
+  .width-fixed {
+    max-width: 1440px;
+    margin: 3em auto;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+
+  .width-full {
+    max-width: 100%;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+}
+
+
+:host {
+  display: block;
+}
+
+
+// Some tricks to make the footer fixed to the bottom, even on "short" pages
+// @see https://css-tricks.com/couple-takes-sticky-footer/
+mat-sidenav-container {
+  min-height: calc(100vh - 162px);
+}
+
+app-footer {
+  min-height: 50px;
+}
+

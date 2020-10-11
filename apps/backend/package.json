@@ -1,0 +1,15 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "deps": "docker run --rm -i --volume \"$PWD\":/app:delegated --user $(id -u):$(id -g)  composer:2.0 install --prefer-dist --ignore-platform-reqs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,18 @@
+FROM node:13.12.0-stretch
+
+WORKDIR /app
+
+EXPOSE 80
+
+RUN echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf
+RUN echo fs.inotify.max_user_watches=524288 | tee /etc/sysctl.d/40-max-user-watches.conf
+
+# Add Tini
+ENV TINI_VERSION v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini", "--"]
+
+# Serve content in ./dist folder
+# It uses the bs-config.js file as configuration
+CMD ["npx", "lite-server"]

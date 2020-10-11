@@ -1,0 +1,14 @@
+{
+  "name": "api-docs",
+  "version": "1.0.0",
+  "main": "assets.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "watch": "docker run --rm -p \"4000:4000\" --volume=\"$PWD:/srv/jekyll:delegated\" -it jekyll/builder:3.8 jekyll serve --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

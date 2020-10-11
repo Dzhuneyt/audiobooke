@@ -1,0 +1,130 @@
+<div class="hero" *ngIf="!isLoggedIn">
+  <div class="inner">
+    <div class="width-full">
+      <br/>
+      <h2>
+        <b>
+          10,000 free audiobooks
+        </b>
+      </h2>
+
+      <h3>
+        A huge library of classics and modern masterpieces.
+      </h3>
+
+      <a
+        [href]="'/audiobook'"
+        [routerLink]="['/audiobook']"
+      >
+        <button
+          [color]="'primary'"
+          class="sso google"
+          mat-raised-button>
+          Browse the full catalog
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<div class="width-fixed benefits" *ngIf="!isLoggedIn">
+  <div fxLayout="row" fxLayoutGap="1em">
+    <div fxFlex>
+      <h3 class="text-center">
+        <span class="text-center icon-wrapper">
+          <i class="far fa-handshake"></i>
+        </span>
+        <b>Free membership</b>
+      </h3>
+
+      <div class="text-center">
+        No fees of any kind for classics
+      </div>
+    </div>
+    <div fxFlex>
+      <h3 class="text-center">
+        <span class="text-center icon-wrapper">
+          <i class="fas fa-headphones"></i>
+        </span>
+        <b>High quality sound</b>
+      </h3>
+
+      <div class="text-center">
+        MP3 files with excellent recording quality
+      </div>
+    </div>
+    <div fxFlex>
+      <h3 class="text-center">
+        <span class="text-center icon-wrapper">
+          <i class="fas fa-stream"></i>
+        </span>
+        <b>Huge variety</b>
+      </h3>
+
+      <div class="text-center">
+        Good balance of classics and modern audiobooks
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div
+  fxLayout="row"
+  fxLayoutAlign="space-evenly"
+  fxLayoutGap="1em"
+  class="cards">
+  <mat-card class="top10" fxFlex="1 1">
+    <mat-card-title>Top 10 audiobooks</mat-card-title>
+    <mat-card-content>
+      <ng-container
+        *ngFor="let audiobook of top10audiobooks"
+      >
+        <div class="single" fxLayout="row"
+             fxLayoutGap="1em">
+          <div fxFlex="0 1 100px">
+            <img style="width: 100px;" [src]="audiobook.cover_url" alt="Cover for {{audiobook.title}}"/>
+          </div>
+          <div fxFlex="1 1">
+            <div mat-line>{{audiobook.title}}</div>
+            <div mat-line class="block-with-text"> {{audiobook.description}} </div>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+  <mat-card
+    fxFlex="1 1 350px"
+    class="latest-authors"
+  >
+    <mat-card-title>Latest Authors</mat-card-title>
+    <mat-card-content>
+      <ng-container
+        *ngFor="let author of latestAuthors"
+      >
+        <div class="single">
+          <a href="#"
+             [href]="'/audiobook?search='+author.name"
+             [routerLink]="['/audiobook']"
+             [queryParams]="{
+                search: author.name
+             }"
+          >
+            <div mat-line>{{author.name}}
+              <ng-container *ngIf="author.dob && author.dod">
+                ( {{author.dob}} - {{author.dod}} )
+              </ng-container>
+            </div>
+          </a>
+        </div>
+
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<br/>

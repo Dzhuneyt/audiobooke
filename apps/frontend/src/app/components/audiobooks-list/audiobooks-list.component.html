@@ -1,0 +1,86 @@
+<div class="width-fixed">
+
+  <div
+    *ngIf="!isServer()"
+    class="search-wrapper"
+    fxFlexFill
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayoutGap="20px">
+
+    <div fxFlex="auto">
+      <app-search (search)="searchInputListener($event)"
+                  [placeholder]="'Search some audiobooks (you can search by title, author name, release year)'">
+
+      </app-search>
+    </div>
+    <div *ngIf="list.length > 0" fxFlex="nogrow">
+      <h3
+
+        class="text-center">
+        <b>{{totalCount}}</b> audiobooks
+      </h3>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    <mat-spinner></mat-spinner>
+
+    <br/>
+
+    <h1>Loading audiobooks...</h1>
+  </div>
+
+  <div *ngFor="let item of list">
+    <hr/>
+    <div class="media">
+      <div class="media-left media-middle">
+        <img
+          [src]="item.cover_url ? item.cover_url : 'https://via.placeholder.com/300x300?text=No%20image'"
+          alt="Audiobook cover"
+          class="media-object"
+        />
+      </div>
+      <div class="media-body">
+        <h2
+          [routerLink]="['/audiobook', item.id, generateSlug(item.title)]"
+          class="media-heading">{{item.title}}
+          <span class="muted">by {{item.author_name}}</span>
+        </h2>
+        <div [innerHTML]="item.description | truncate: 600" class="description"></div>
+
+        <br/>
+        <p>
+
+          <button
+            [routerLink]="['/audiobook', item.id, generateSlug(item.title)]"
+            class="add-to-favorites"
+            color="primary" mat-raised-button>
+            Learn more
+          </button>
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <mat-paginator [length]="totalCount"
+                 [pageSize]="20"
+                 [pageIndex]="this.currentPage-1"
+                 (page)="navigateToPage($event.pageIndex+1)">
+  </mat-paginator>
+
+</div>
+
+<div
+  *ngIf="list.length===0 && !isLoading"
+  class="no-results"
+  fxLayout fxLayoutAlign="center start">
+  <h2>
+    <i class="fa fa-frown-o" aria-hidden="true"></i>
+    No results found
+  </h2>
+</div>
+
+
+<br/>

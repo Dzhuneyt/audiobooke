@@ -1,0 +1,24 @@
+<div *ngIf="showSsoButtons" class="width-full">
+  <div class="fullwidth-image">
+
+    <div class="center-square">
+      <h2>
+        Enjoy countless audiobooks
+      </h2>
+
+      <div class="subheading">
+        Registration is free and only takes a second.<br/>
+        Plus, you get thousands of audiobooks at your fingertips, ready for download!
+      </div>
+
+      <button
+        (click)="signin('googleplus')"
+        [color]="'warn'"
+        class="sso google"
+        mat-raised-button>
+        <i class="fa fa-google"></i>&nbsp;
+        Signin with your Google account
+      </button>
+    </div>
+  </div>
+</div>

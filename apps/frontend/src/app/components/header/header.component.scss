@@ -1,0 +1,54 @@
+.header {
+  //background-color: #1976D2;
+  color: #fff;
+  padding: 2em;
+
+  a {
+    text-decoration: none;
+  }
+
+  h2 {
+    cursor: pointer;
+    margin: 0;
+    font-size: 2em;
+    line-height: 2em;
+
+    mat-icon {
+      vertical-align: middle;
+      margin-top: -5px;
+    }
+  }
+
+  a, a:hover {
+    color: #fff;
+  }
+}
+
+.login-logout {
+  font-size: 1.5em;
+  margin-top: 0.5em;
+
+  span {
+    padding-left: 0.5em;
+  }
+
+  mat-icon {
+    vertical-align: middle;
+    margin-top: -5px;
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  a:hover {
+    //text-decoration: underline;
+  }
+}
+
+.drawer {
+  opacity: 0.5;
+  display: inline;
+  margin-right: 0.5em;
+  cursor: pointer;
+}
