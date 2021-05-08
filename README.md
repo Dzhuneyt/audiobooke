@@ -1,11 +1,23 @@
 Audiobooke
 ===
 
-The social network for audiobook fans.
+A portal for fans of Audiobooks. Powered by Librivox.
 
-The app consists of:
-- Angular based frontend (TypeScript, JavaScript)
-- A set of REST APIs on top of Yii 2 framework (PHP).
+*Main features:*
+* Browse and download 10,000+ free audiobooks for offline playback
+* Add audiobooks to favorites
+
+*Upcoming features:*
+* Review audiobooks
+* Personal collections
+
+Technologies
+---
+<a href="https://angular.io"><img src="https://angular.io/assets/images/logos/angular/angular.png" alt="Angular Logo" width="100"/></a> <a href="https://www.yiiframework.com/"><img src="https://i.imgur.com/3rXK75a.png" alt="Yii2 Logo" width="100"/></a> <a href="https://www.typescriptlang.org/"><img src="https://i.imgur.com/vr2wa7m.png" alt="TypeScript Logo" width="100"/></a> <a href="https://docker.com"><img src="https://i.imgur.com/650z1vI.png" alt="Docker Logo" width="100"/></a> <a href="https://aws.amazon.com"><img src="https://i.imgur.com/EATjrBz.png" alt="AWS Logo" width="100"/></a> 
+
+
+
+
 
 ### Requirements
 
