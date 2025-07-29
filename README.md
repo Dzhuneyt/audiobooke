@@ -1,5 +1,8 @@
 # Audiobooke
 
+> **⚠️ ARCHIVED REPOSITORY**  
+> This repository has been archived and is no longer actively maintained. It serves as a reference implementation for modern full-stack web applications with microservices architecture, AWS infrastructure, and containerized deployment patterns.
+
 A comprehensive web portal for audiobook enthusiasts, powered by Librivox data. This project provides a modern, full-stack application for browsing, searching, and downloading free audiobooks with user authentication and favorites functionality.
 
 ## 🎯 Project Overview
